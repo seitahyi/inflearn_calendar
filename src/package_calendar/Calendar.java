@@ -1,9 +1,6 @@
 package package_calendar;
 
 
-import java.util.Scanner;
-
-
 public class Calendar {
 	
 	private static final int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -23,7 +20,7 @@ public class Calendar {
 		
 	}
 	
-	public static int getMaxDaysOfMonth(int year, int month){
+	public static int getMaxDaysOfMonth(int year, int month, int weekday){
 		
 		if(isLeapYear(year)){
 			return LEAP_MAX_DAYS[month - 1];			
@@ -33,22 +30,37 @@ public class Calendar {
 		
 	}
 	
-	public static void printCalendar(int year, int month){
+	public static void printCalendar(int year, int month, int weekday){
 		
 		System.out.printf("  <<%4d %3d>> \n", year , month);
-		System.out.println("Su MO TH WE TH FR SA");
+		System.out.println("SU MO TH WE TH FR SA");
 		System.out.println("--------------------");
 		
-		int maxDay = getMaxDaysOfMonth(year, month);
+		for(int a = 0; a < weekday; a++){
+			System.out.print("   ");
+		}
 		
-		for(int i = 1; i <= maxDay; i++){
+		int maxDay = getMaxDaysOfMonth(year, month, weekday);
+		
+		int count = 7 - weekday;
+		int delim = (count < 7) ? count : 0;
+		
+		for(int b = 1; b <= count; b++){
+			System.out.printf("%3d", b);
+		}
+		
+		System.out.println();
+		
+		count++;
+		for(int c = count; c <= maxDay; c++){
 			
-			System.out.printf("%3d", i);
+			System.out.printf("%3d", c);
 			
-			if(i % 7 == 0)
+			if(c % 7 == delim)
 				System.out.println();
 		}
 		
+		System.out.println();
 		System.out.println();
 		
 	}
