@@ -162,6 +162,7 @@ public class Calendar {
 		System.out.println(cal.getWeekDay(1973, 1, 1) == 1);
 		System.out.println(cal.getWeekDay(1974, 1, 1) == 2);
 		
+		
 		cal.registerPlan("2017-06-23", "Let's eat beef!");
 		System.out.println(cal.searchPlan("2017-06-23").equals("Let's eat beef!"));
 
